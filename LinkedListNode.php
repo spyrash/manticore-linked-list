@@ -1,9 +1,9 @@
 <?php
 class LinkedListNode{
-    private $next = null;
-    private $prev = null;
-    private $value = null;
-    public function __construct($value)
+    private ?LinkedListNode $next = null;
+    private ?LinkedListNode $prev = null;
+    private mixed $value = null;
+    public function __construct(mixed $value)
     {
         $this->value = $value;
     }

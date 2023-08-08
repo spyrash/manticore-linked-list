@@ -2,8 +2,8 @@
 include('LinkedListNode.php');
 
 class LinkedList {
-   public $head;
-   public $tail; 
+   public ?LinkedListNode $head;
+   public ?LinkedListNode $tail; 
    public function __construct(LinkedListNode $node)
    {
        $this->head = $node;
