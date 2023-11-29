@@ -1,5 +1,8 @@
 <?php
-include('LinkedListNode.php');
+
+namespace LinkedListCustom;
+
+use LinkedListCustom\LinkedListNode;
 
 class LinkedList {
    public ?LinkedListNode $head;
