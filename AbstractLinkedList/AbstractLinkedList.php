@@ -16,20 +16,27 @@ class AbstractLinkedList implements LinkedListInterface {
         return $this->head === null;
     }
 
-    public function append($data): LinkedListNode {
+    public function append($data): LinkedListNode 
+    {
+        //TODO
         return new LinkedListNode();
     }
 
     public function prepend($data): LinkedListNode 
     {
+        //TODO
         return new LinkedListNode();
     }
 
-    public function delete($data): bool {
-       return true;
+    public function delete($data): bool
+     {
+       //TODO
+        return true;
     }
 
-    public function pop(): ?LinkedListNode {
+    public function pop(): ?LinkedListNode 
+    {
+        //TODO
         return new LinkedListNode();
     }
 
