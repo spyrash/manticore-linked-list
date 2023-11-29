@@ -1,9 +1,12 @@
 <?php
+
+namespace LinkedListCustom;
+
 class LinkedListNode{
     private ?LinkedListNode $next = null;
     private ?LinkedListNode $prev = null;
     private mixed $value = null;
-    public function __construct(mixed $value)
+    public function __construct(mixed $value = null)
     {
         $this->value = $value;
     }
