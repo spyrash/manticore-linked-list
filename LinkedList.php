@@ -3,9 +3,10 @@
 namespace LinkedListCustom;
 
 use LinkedListCustom\LinkedListNode;
+use LinkedListCustom\AbstractLinkedList\AbstractLinkedList;
 
-class LinkedList {
-   public ?LinkedListNode $head;
+class LinkedList extends AbstractLinkedList
+ {
    public ?LinkedListNode $tail; 
    public function __construct(LinkedListNode $node)
    {
@@ -61,7 +62,8 @@ class LinkedList {
        $this->head = $node;
     }
 
-    public function getHead(){
+    public function getHead(): ?LinkedListNode
+    {
         if($this->head){
             return $this->head;
         }
