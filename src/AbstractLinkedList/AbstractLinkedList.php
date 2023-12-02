@@ -5,6 +5,7 @@ namespace ManticoreLinkedList\src\AbstractLinkedList;
 use ManticoreLinkedList\src\Interfaces\LinkedListInterface;
 use ManticoreLinkedList\src\LinkedListNode;
 
+    //TODO: refactor this class using and resetting the hypotetically tail of the linkedlist
 class AbstractLinkedList implements LinkedListInterface
 {
     protected ?LinkedListNode $head;
@@ -21,6 +22,7 @@ class AbstractLinkedList implements LinkedListInterface
 
     public function append($data): LinkedListNode
     {
+        //TODO: upgrade using the tail
         $newNode = new LinkedListNode($data);
         if ($this->isEmpty()) {
             $this->head = $newNode;
