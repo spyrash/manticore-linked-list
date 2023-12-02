@@ -1,8 +1,8 @@
 <?php
 
-namespace LinkedListCustom\Interfaces;
+namespace ManticoreLinkedList\src\Interfaces;
 
-use LinkedListCustom\LinkedListNode;
+use ManticoreLinkedList\src\LinkedListNode;
 
 interface LinkedListInterface {
     public function isEmpty(): bool;

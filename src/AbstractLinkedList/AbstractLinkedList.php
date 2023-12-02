@@ -1,9 +1,9 @@
 <?php
 
-namespace LinkedListCustom\AbstractLinkedList;
+namespace ManticoreLinkedList\src\AbstractLinkedList;
 
-use LinkedListCustom\Interfaces\LinkedListInterface;
-use LinkedListCustom\LinkedListNode;
+use ManticoreLinkedList\src\Interfaces\LinkedListInterface;
+use ManticoreLinkedList\src\LinkedListNode;
 
 class AbstractLinkedList implements LinkedListInterface
 {
