@@ -21,19 +21,71 @@ class AbstractLinkedList implements LinkedListInterface
 
     public function append($data): LinkedListNode
     {
-        //TODO
-        return new LinkedListNode();
+        $newNode = new LinkedListNode($data);
+        if ($this->isEmpty()) {
+            $this->head = $newNode;
+        } else {
+            $current = $this->head;
+            while ($current->next !== null) {
+                $current = $current->next;
+            }
+            $current->next = $newNode;
+            $newNode->prev = $current;
+        }
+        return $newNode;
     }
 
     public function prepend($data): LinkedListNode
     {
-        //TODO
-        return new LinkedListNode();
+        $newNode = new LinkedListNode($data);
+        if ($this->isEmpty()) {
+            $this->head = $newNode;
+        } else {
+            $newNode->next = $this->head;
+            $this->head->prev = $newNode;
+            $this->head = $newNode;
+        }
+        return $newNode;
     }
 
     public function delete($data): bool
     {
-        //TODO
+        if ($this->isEmpty()) {
+            return false;
+        }
+
+        $current = $this->head;
+
+        // Check if the node to delete is the head
+        if ($current->value === $data) {
+            $this->head = $current->next;
+            if ($this->head !== null) {
+                $this->head->prev = null;
+            }
+            unset($current);
+            return true;
+        }
+
+        while ($current !== null && $current->value !== $data) {
+            $current = $current->next;
+        }
+
+        if ($current === null) {
+            return false; // Node not found
+        }
+
+        $prevNode = $current->prev;
+        $nextNode = $current->next;
+
+        if ($prevNode !== null) {
+            $prevNode->next = $nextNode;
+        }
+
+        if ($nextNode !== null) {
+            $nextNode->prev = $prevNode;
+        }
+
+        unset($current);
         return true;
     }
 
@@ -42,21 +94,21 @@ class AbstractLinkedList implements LinkedListInterface
         if ($this->isEmpty()) {
             return null;
         }
-    
-        $current = $this->head;
-        $prev = null;
-    
-        while ($current->next !== null) {
-            $prev = $current;
-            $current = $current->next;
+
+        $currentNode = $this->head;
+        $prevNode = null;
+
+        while ($currentNode->next !== null) {
+            $prevNode = $currentNode;
+            $currentNode = $currentNode->next;
         }
-    
-        if ($prev !== null) {
-            $prev->next = null;
+
+        if ($prevNode !== null) {
+            $prevNode->next = null;
         } else {
             $this->head = null;
         }
-    
-        return $current->value;
+
+        return $currentNode->value;
     }
 }
