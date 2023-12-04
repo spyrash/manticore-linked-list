@@ -5,14 +5,16 @@ namespace ManticoreLinkedList\src\AbstractLinkedList;
 use ManticoreLinkedList\src\Interfaces\LinkedListInterface;
 use ManticoreLinkedList\src\LinkedListNode;
 
-    //TODO: refactor this class using and resetting the hypotetically tail of the linkedlist
+//TODO: refactor this class using and resetting the hypotetically tail of the linkedlist
 class AbstractLinkedList implements LinkedListInterface
 {
     protected ?LinkedListNode $head;
+    protected ?LinkedListNode $tail;
 
     public function __construct()
     {
         $this->head = null;
+        $this->tail = null;
     }
 
     public function isEmpty(): bool
@@ -42,6 +44,7 @@ class AbstractLinkedList implements LinkedListInterface
         $newNode = new LinkedListNode($data);
         if ($this->isEmpty()) {
             $this->head = $newNode;
+            $this->tail = $newNode;
         } else {
             $newNode->next = $this->head;
             $this->head->prev = $newNode;

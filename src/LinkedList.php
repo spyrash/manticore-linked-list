@@ -7,7 +7,7 @@ use ManticoreLinkedList\src\AbstractLinkedList\AbstractLinkedList;
 
 class LinkedList extends AbstractLinkedList
  {
-   public ?LinkedListNode $tail; 
+   
    public function __construct(LinkedListNode $node)
    {
        $this->head = $node;
