@@ -116,4 +116,47 @@ class AbstractLinkedList implements LinkedListInterface
 
         return $currentNode->value;
     }
+
+    public function findAtIndex($num){
+        $headNode = $this->head;
+        $index = 0;
+        if($headNode == null){
+            echo '<br> empty linked list <br>';
+            return null;
+        }
+        if($index == $num){
+            echo '<br> found node : '.$headNode->value.' at index: '.$index.'<br>';
+            return true;
+        }
+        while ($headNode->next !== null){
+            $headNode = $headNode->next;
+            $index++;
+            if($index == $num){
+                echo '<br> found node : '.$headNode->value.' at index: '.$index.'<br>';
+                return true;
+            }
+        }
+        echo '<br> node not found <br>';
+        return false;
+
+    }
+
+    public function printLinkedList()
+    {
+       $head = $this->head;
+       if($head == null){
+        echo'empty list <br>';
+        return null;
+       }
+       else
+       echo '<br>'.$head->value;
+       {
+        while($head->next != null){
+            $head = $head->next;
+            echo '->'.$head->next;
+        }
+        echo '<br>';
+       }
+    }
+
 }
