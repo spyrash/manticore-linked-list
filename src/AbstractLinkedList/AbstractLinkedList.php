@@ -11,11 +11,6 @@ class AbstractLinkedList implements LinkedListInterface
     protected ?LinkedListNode $head;
     protected ?LinkedListNode $tail;
 
-    public function __construct()
-    {
-        $this->head = null;
-        $this->tail = null;
-    }
 
     public function isEmpty(): bool
     {
