@@ -1,6 +1,6 @@
 <?php
 
-namespace ManticoreLinkedList\src;
+namespace manticore\linkedlist;
 
 class LinkedListNode
 {

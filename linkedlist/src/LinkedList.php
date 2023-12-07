@@ -1,9 +1,9 @@
 <?php
 
-namespace ManticoreLinkedList\src;
+namespace manticore\linkedlist;
 
-use ManticoreLinkedList\src\LinkedListNode;
-use ManticoreLinkedList\src\AbstractLinkedList\AbstractLinkedList;
+use manticore\linkedlist\LinkedListNode;
+use manticore\linkedlist\AbstractLinkedList\AbstractLinkedList;
 
 class LinkedList extends AbstractLinkedList
  {
@@ -15,4 +15,3 @@ class LinkedList extends AbstractLinkedList
    }
 
 }
-?>
