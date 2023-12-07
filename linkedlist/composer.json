@@ -1,0 +1,19 @@
+{
+  "name": "manticore/linkedlist",
+  "description": "A linkedlist structure with some custom method added and an implementation to be as versatile as possible with othere data structures.",
+  "type": "library",
+  "license": "mit",
+  "autoload": {
+      "psr-4": {
+          "manticore\\linkedlist\\": "src/"
+      }
+  },
+  "authors": [
+      {
+          "name": "spyrash",
+          "email": "diego.petrucci@outlook.com"
+      }
+  ],
+  "require": {}
+}
+
