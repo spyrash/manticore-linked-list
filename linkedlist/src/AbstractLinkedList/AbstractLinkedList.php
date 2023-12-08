@@ -23,13 +23,12 @@ class AbstractLinkedList implements LinkedListInterface
         $newNode = new LinkedListNode($data);
         if ($this->isEmpty()) {
             $this->head = $newNode;
+            $this->tail = $newNode;
         } else {
-            $current = $this->head;
-            while ($current->next !== null) {
-                $current = $current->next;
-            }
-            $current->next = $newNode;
-            $newNode->prev = $current;
+            $oldTail = $this->tail;
+            $oldTail->next = $newNode;
+            $newNode->prev = $oldTail;
+            $this->tail = $newNode;
         }
         return $newNode;
     }
@@ -140,17 +139,19 @@ class AbstractLinkedList implements LinkedListInterface
     {
        $head = $this->head;
        if($head == null){
-        echo'empty list <br>';
+        echo "empty list \n";
         return null;
        }
        else
-       echo '<br>'.$head->value;
        {
+        echo ("\n");
+        var_dump($head);
         while($head->next != null){
             $head = $head->next;
-            echo '->'.$head->next;
+            echo("->");
+            var_dump($head->next);
         }
-        echo '<br>';
+        echo "\n";
        }
     }
 
