@@ -145,11 +145,12 @@ class AbstractLinkedList implements LinkedListInterface
        else
        {
         echo ("\n");
-        var_dump($head);
+        echo("head: ".$head->value->value);;
         while($head->next != null){
-            $head = $head->next;
+            echo("<-");
             echo("->");
-            var_dump($head->next);
+            echo($head->next->value->value);
+            $head = $head->next;
         }
         echo "\n";
        }
