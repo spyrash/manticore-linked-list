@@ -19,7 +19,6 @@ class AbstractLinkedList implements LinkedListInterface
 
     public function append($data): LinkedListNode
     {
-        //TODO: upgrade using the tail
         $newNode = new LinkedListNode($data);
         if ($this->isEmpty()) {
             $this->head = $newNode;
@@ -54,27 +53,26 @@ class AbstractLinkedList implements LinkedListInterface
         }
 
         $current = $this->head;
-
         // Check if the node to delete is the head
         if ($current->value === $data) {
-            $this->head = $current->next;
-            if ($this->head !== null) {
-                $this->head->prev = null;
-            }
-            unset($current);
-            return true;
+          $this->unsetHead();
+          return true;
         }
 
-        while ($current !== null && $current->value !== $data) {
+        while ($current !== null) {
             $current = $current->next;
+            if ($current->value !== $data) {
+                $this->unsetNode($current);
+                return true;
+            }
         }
+        
+        return false; 
+    }
 
-        if ($current === null) {
-            return false; // Node not found
-        }
-
-        $prevNode = $current->prev;
-        $nextNode = $current->next;
+    private function unsetNode(LinkedListNode $node){
+        $prevNode = $node->prev;
+        $nextNode = $node->next;
 
         if ($prevNode !== null) {
             $prevNode->next = $nextNode;
@@ -87,6 +85,42 @@ class AbstractLinkedList implements LinkedListInterface
         unset($current);
         return true;
     }
+
+    private function unsetHead(): bool
+    {
+        if ($this->head === null) {
+            return true;
+        }
+        
+        if ($this->head === $this->tail) {
+            $this->unsetTail();
+        }
+    
+        if ($this->head->next !== null) {
+            $this->head->next->prev = null;
+            $this->head = $this->head->next;
+            return true;
+        }
+        $this->head = null;
+        return true;
+    }
+
+    private function unsetTail(): bool
+    {
+        if ($this->tail === null) {
+            return true;
+        }
+
+        if ($this->tail->prev !== null) {
+           $this->tail->prev->next = null;
+           $this->tail = $this->tail->prev;
+           return true;
+        }
+
+        $this->tail = null;
+        return true;
+    }
+
 
     public function pop(): ?LinkedListNode
     {
@@ -108,7 +142,7 @@ class AbstractLinkedList implements LinkedListInterface
             $this->head = null;
         }
 
-        return $currentNode->value;
+        return $currentNode;
     }
 
     public function findAtIndex($num){
@@ -145,11 +179,11 @@ class AbstractLinkedList implements LinkedListInterface
        else
        {
         echo ("\n");
-        echo("head: ".$head->value->value);;
+        echo("head: ".$head->value);
         while($head->next != null){
             echo("<-");
             echo("->");
-            echo($head->next->value->value);
+            echo($head->next->value);
             $head = $head->next;
         }
         echo "\n";

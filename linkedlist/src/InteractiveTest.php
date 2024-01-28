@@ -55,14 +55,12 @@ class InteractiveTest
 
                 case 4:
                     $value = readline("Enter the value for the new node: ");
-                    $node = new LinkedListNode($value);
-                    $linkedList->append($node);
+                    $linkedList->append($value);
                     break;
 
                 case 5:
                     $value = readline("Enter the value for the new node: ");
-                    $node = new LinkedListNode($value);
-                    $linkedList->prepend($node);
+                    $linkedList->prepend($value);
                     break;
 
                 case 6:
