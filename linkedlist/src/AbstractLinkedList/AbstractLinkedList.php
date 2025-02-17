@@ -5,7 +5,7 @@ namespace manticore\linkedlist\AbstractLinkedList;
 use manticore\linkedlist\Interfaces\LinkedListInterface;
 use manticore\linkedlist\LinkedListNode;
 
-//TODO: refactor this class using and resetting the hypotetically tail of the linkedlist
+//TODO: refactor this class using and resetting the hypothetically tail of the linked list
 class AbstractLinkedList implements LinkedListInterface
 {
     protected ?LinkedListNode $head;
@@ -22,13 +22,12 @@ class AbstractLinkedList implements LinkedListInterface
         $newNode = new LinkedListNode($data);
         if ($this->isEmpty()) {
             $this->head = $newNode;
-            $this->tail = $newNode;
         } else {
             $oldTail = $this->tail;
             $oldTail->next = $newNode;
             $newNode->prev = $oldTail;
-            $this->tail = $newNode;
         }
+        $this->tail = $newNode;
         return $newNode;
     }
 
@@ -70,7 +69,8 @@ class AbstractLinkedList implements LinkedListInterface
         return false; 
     }
 
-    private function unsetNode(LinkedListNode $node){
+    private function unsetNode(LinkedListNode $node): void
+    {
         $prevNode = $node->prev;
         $nextNode = $node->next;
 
@@ -83,13 +83,12 @@ class AbstractLinkedList implements LinkedListInterface
         }
 
         unset($current);
-        return true;
     }
 
-    private function unsetHead(): bool
+    private function unsetHead(): void
     {
         if ($this->head === null) {
-            return true;
+            return;
         }
         
         if ($this->head === $this->tail) {
@@ -99,26 +98,25 @@ class AbstractLinkedList implements LinkedListInterface
         if ($this->head->next !== null) {
             $this->head->next->prev = null;
             $this->head = $this->head->next;
-            return true;
+            return;
         }
         $this->head = null;
-        return true;
     }
 
-    private function unsetTail(): bool
+    private function unsetTail(): void
     {
         if ($this->tail === null) {
-            return true;
+            return;
         }
 
         if ($this->tail->prev !== null) {
            $this->tail->prev->next = null;
            $this->tail = $this->tail->prev;
-           return true;
+           return;
         }
 
         $this->tail = null;
-        return true;
+        return;
     }
 
 
@@ -145,36 +143,37 @@ class AbstractLinkedList implements LinkedListInterface
         return $currentNode;
     }
 
-    public function findAtIndex($num){
+    public function findAtIndex($num): void
+    {
         $headNode = $this->head;
         $index = 0;
         if($headNode == null){
             echo '<br> empty linked list <br>';
-            return null;
+            return;
         }
         if($index == $num){
             echo '<br> found node : '.$headNode->value.' at index: '.$index.'<br>';
-            return true;
+            return;
         }
         while ($headNode->next !== null){
             $headNode = $headNode->next;
             $index++;
             if($index == $num){
                 echo '<br> found node : '.$headNode->value.' at index: '.$index.'<br>';
-                return true;
+                return;
             }
         }
         echo '<br> node not found <br>';
-        return false;
+        return;
 
     }
 
-    public function printLinkedList()
+    public function printLinkedList(): void
     {
        $head = $this->head;
        if($head == null){
         echo "empty list \n";
-        return null;
+        return;
        }
        else
        {

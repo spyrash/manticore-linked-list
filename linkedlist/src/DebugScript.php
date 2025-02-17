@@ -19,9 +19,9 @@ class DebugScript
 
     public static function run()
     {
-        try{
-        $linkedList = new LinkedList();
-        }catch( Exception $e){
+        try {
+            $linkedList = new LinkedList();
+        } catch(Exception $e) {
             throw new Exception($e->getMessage());
         }
 
