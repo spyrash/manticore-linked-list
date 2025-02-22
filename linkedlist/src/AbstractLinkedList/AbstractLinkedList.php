@@ -11,10 +11,10 @@ class AbstractLinkedList implements LinkedListInterface
     protected ?LinkedListNode $head;
     protected ?LinkedListNode $tail;
 
-
+// append: Add something to the end. prepend: Add something to the beginning.
     public function isEmpty(): bool
     {
-        return $this->head === null;
+        return (null === $this->head && null === $this->tail);
     }
 
     public function append($data): LinkedListNode
@@ -35,17 +35,18 @@ class AbstractLinkedList implements LinkedListInterface
     {
         $newNode = new LinkedListNode($data);
         if ($this->isEmpty()) {
-            $this->head = $newNode;
             $this->tail = $newNode;
         } else {
-            $newNode->next = $this->head;
-            $this->head->prev = $newNode;
-            $this->head = $newNode;
+            $oldHead = $this->head;
+            $oldHead->prev = $newNode;
+            $newNode->next = $oldHead;
         }
+        $this->head = $newNode;
         return $newNode;
     }
 
-    public function delete($data): bool
+    // Delete the first node that have the same value of $dataValue, starting by the head
+    public function deleteFirstNodeByValue($dataValue): bool
     {
         if ($this->isEmpty()) {
             return false;
@@ -53,14 +54,14 @@ class AbstractLinkedList implements LinkedListInterface
 
         $current = $this->head;
         // Check if the node to delete is the head
-        if ($current->value === $data) {
+        if ($current->value === $dataValue) {
           $this->unsetHead();
           return true;
         }
 
         while ($current !== null) {
             $current = $current->next;
-            if ($current->value !== $data) {
+            if ($current->value === $dataValue) {
                 $this->unsetNode($current);
                 return true;
             }
@@ -76,13 +77,18 @@ class AbstractLinkedList implements LinkedListInterface
 
         if ($prevNode !== null) {
             $prevNode->next = $nextNode;
+        } else {
+            $this->head = $nextNode;
         }
 
         if ($nextNode !== null) {
             $nextNode->prev = $prevNode;
+        } else {
+            $this->tail = $prevNode;
         }
-
-        unset($current);
+       // $node->prev = null;
+       // $node->next = null;
+       // unset($node); needed?
     }
 
     private function unsetHead(): void

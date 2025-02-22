@@ -83,7 +83,7 @@ class DebugScript
 
             //     case 6:
             //         $value = readline("Enter the value of the node to delete: ");
-            //         $linkedList->delete($value);
+            //         $linkedList->deleteFirstNodeByValue($value);
             //         break;
 
             //     case 7:
